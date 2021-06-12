@@ -1,0 +1,33 @@
+[user]
+	name = yuzu3886
+	email = yuzu3886@gmail.com
+
+[core]
+	editor = vim
+	pager = diff-highlight | less
+
+[diff]
+	algorithm = histogram
+
+[ghq]
+	root = ~/src
+
+[github]
+	user = yuzu3886
+
+[init]
+	defaultBranch = main
+
+[interactive]
+	diffFilter = diff-highlight
+
+[pull]
+	ff = only
+
+[push]
+	default = current
+
+[url "git@github.com:yuzu3886"]
+	insteadOf = https://github.com/yuzu3886
+
+# vim: ft=gitconfig

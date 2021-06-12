@@ -1,0 +1,33 @@
+include_role 'base'
+
+include_cookbook 'paru'
+
+include_cookbook 'bat'
+include_cookbook 'fzf'
+include_cookbook 'ghq'
+include_cookbook 'git'
+include_cookbook 'gpg'
+include_cookbook 'ripgrep'
+include_cookbook 'tig'
+include_cookbook 'tmux'
+include_cookbook 'vim'
+include_cookbook 'zsh'
+
+include_cookbook 'asdf'
+include_cookbook 'ruby'
+
+include_cookbook 'fonts'
+include_cookbook 'gtk'
+include_cookbook 'i3'
+include_cookbook 'i3status-rust'
+include_cookbook 'ly'
+include_cookbook 'picom'
+include_cookbook 'pipewire'
+include_cookbook 'rofi'
+include_cookbook 'xbanish'
+include_cookbook 'xclip'
+include_cookbook 'xkeysnail'
+include_cookbook 'xsecurelock'
+
+include_cookbook 'alacritty'
+include_cookbook 'firefox'

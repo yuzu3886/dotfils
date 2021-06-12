@@ -1,0 +1,14 @@
+[theme]
+name = "gruvbox-dark"
+
+[theme.overrides]
+separator = ""
+
+[[block]]
+block = "sound"
+max_vol = 100
+
+[[block]]
+block = "time"
+format = "%Y/%m/%d %H:%M"
+interval = 5

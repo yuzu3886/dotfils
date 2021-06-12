@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -eu
+
+mitamae_version='1.12.7'
+mitamae_cache="mitamae-${mitamae_version}"
+
+if [ -f "bin/${mitamae_cache}" ]; then
+  exit 0
+fi
+
+case "$(uname)" in
+  'Linux')
+    mitamae_bin='mitamae-x86_64-linux'
+    ;;
+  'Darwin')
+    mitamae_bin='mitamae-x86_64-darwin'
+    ;;
+  *)
+    echo "unexpected uname: $(uname)"
+    exit 1
+    ;;
+esac
+
+curl -fSL -o bin/${mitamae_cache} https://github.com/itamae-kitchen/mitamae/releases/download/v${mitamae_version}/${mitamae_bin}
+
+chmod +x "bin/${mitamae_cache}"
+ln -sf "${mitamae_cache}" bin/mitamae
