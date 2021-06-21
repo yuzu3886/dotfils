@@ -6,6 +6,7 @@ function! PackInit(options) abort
   call minpac#init(a:options)
   call minpac#add('k-takata/minpac', { 'type': 'opt' })
 
+  call minpac#add('cespare/vim-toml')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('lifepillar/vim-gruvbox8')
   call minpac#add('machakann/vim-sandwich')

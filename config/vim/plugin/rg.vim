@@ -4,7 +4,7 @@ endif
 let g:loaded_rg = 1
 
 function! s:rg(word) abort
-  let l:list = split(system(printf('rg --vimgrep --hidden --ignore-case --smart-case --glob !.git %s', a:word)), '\n')
+  let l:list = systemlist(printf('rg --vimgrep --hidden --ignore-case --smart-case --glob !.git %s', a:word))
   call setqflist([], 'r', #{ efm: '%f:%l:%c:%m', lines: l:list })
   cwindow
 endfunction

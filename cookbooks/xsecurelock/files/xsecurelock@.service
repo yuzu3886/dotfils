@@ -11,3 +11,5 @@ ExecStart=/sbin/xsecurelock
 
 [Install]
 WantedBy=suspend.target
+
+# vim: ft=systemd

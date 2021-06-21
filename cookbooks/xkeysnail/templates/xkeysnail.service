@@ -4,7 +4,10 @@ Description=xkeysnail
 [Service]
 Type=simple
 ExecStart=/usr/bin/sudo /usr/bin/xkeysnail /home/<%= @user %>/.config/xkeysnail/config.py
+StandardOutput=null
 Restart=always
 
 [Install]
 WantedBy=default.target
+
+# vim: ft=systemd
