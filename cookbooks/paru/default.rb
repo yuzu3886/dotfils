@@ -1,4 +1,4 @@
-version = '1.7.2'
+version = '1.7.3'
 url = "https://github.com/Morganamilo/paru/releases/download/v#{version}/paru-v#{version}-x86_64.tar.zst"
 path = "/tmp/paru"
 archive = "#{path}/paru-v#{version}-x86_64.tar.zst"
