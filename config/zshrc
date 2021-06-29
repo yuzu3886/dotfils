@@ -53,7 +53,7 @@ zle -N fzf-history
 fzf-ghq() {
   local preview_command repo
   preview_command="bat --color=always --theme=gruvbox-dark $(ghq root)/{}/README*"
-  repo=$(ghq list | fzf --layout=reverse --query=${LBUFFER} --preview="${preview_command}")
+  repo=$(ghq list | fzf --layout=reverse --query=${LBUFFER} --preview="${preview_command}" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up)
   if [ -n "${repo}" ]
   then
     repo=$(ghq list --full-path --exact ${repo})
