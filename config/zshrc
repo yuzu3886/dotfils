@@ -51,12 +51,20 @@ fzf-history() {
 zle -N fzf-history
 
 fzf-ghq() {
-  local preview_command repo
+  local position preview_command repo
+  if [ "$(tput cols)" -gt 160 ]
+  then
+    position='right,border-left'
+  else
+    position='down,border-top,70%'
+  fi
   preview_command="bat --color=always --theme=gruvbox-dark $(ghq root)/{}/README*"
-  repo=$(ghq list | fzf --layout=reverse --query=${LBUFFER} --preview="${preview_command}" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up)
+  repo=$(ghq list | fzf --layout=reverse --query="${LBUFFER}" \
+    --preview="${preview_command}" --preview-window="${position}" \
+    --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up)
   if [ -n "${repo}" ]
   then
-    repo=$(ghq list --full-path --exact ${repo})
+    repo=$(ghq list --full-path --exact "${repo}")
     BUFFER="cd ${repo}"
     zle accept-line
   fi
