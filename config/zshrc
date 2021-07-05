@@ -12,6 +12,8 @@ fpath=(
 
 source ${HOME}/.asdf/asdf.sh
 
+autoload -Uz add-zsh-hook
+
 autoload -Uz colors
 colors
 
@@ -21,6 +23,30 @@ compinit -C -d ${XDG_CACHE_HOME}/zsh/compdump
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end  history-search-end
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' unstagedstr '-'
+zstyle ':vcs_info:git:*' formats '%b' '%c%u'
+zstyle ':vcs_info:git:*' actionformats '%b' '%c%u' '%a'
+_update_vcs_info_msg() {
+  local -a messages
+  local msg
+  LANG=en_US.UTF-8 vcs_info
+  if [ -z "${vcs_info_msg_0_}" ]
+  then
+    msg=''
+  else
+    messages+=( "%B${vcs_info_msg_0_}%b" )
+    [ -n "${vcs_info_msg_1_}" ] && messages+=( "%B%F{yellow}${vcs_info_msg_1_}%f%b" )
+    [ -n "${vcs_info_msg_2_}" ] && messages+=( "%B%F{red}!${vcs_info_msg_2_}%f%b" )
+    msg="${(j: :)messages}"
+  fi
+  typeset -g vcs_info_msg="${msg}"
+}
+add-zsh-hook precmd _update_vcs_info_msg
 
 HISTFILE=${XDG_DATA_HOME}/zsh/history
 HISTSIZE=100000
@@ -33,11 +59,12 @@ setopt hist_verify
 setopt ignore_eof
 setopt no_beep
 setopt no_flow_control
+setopt prompt_subst
 setopt share_history
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-PROMPT='%~ %(?.%F{blue}❯%F{cyan}❯%F{green}❯%f.%F{red}❯❯❯%f) '
+PROMPT='%~ ${vcs_info_msg:+${vcs_info_msg} }%(?.%F{blue}❯%F{cyan}❯%F{green}❯%f.%F{red}❯❯❯%f) '
 
 fzf-history() {
   local hist
