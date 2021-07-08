@@ -26,6 +26,10 @@ if has('termguicolors') && $COLORTERM ==# 'truecolor'
   set termguicolors
 endif
 
+let &t_SI .= "\e[6 q"
+let &t_EI .= "\e[2 q"
+let &t_SR .= "\e[4 q"
+
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
