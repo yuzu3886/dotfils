@@ -85,7 +85,7 @@ fzf-ghq() {
   else
     position='down,border-top,70%'
   fi
-  preview_command="bat --color=always --theme=gruvbox-dark $(ghq root)/{}/README*"
+  preview_command="bat --color=always --theme=gruvbox-dark $(ghq root)/{}/README.(asciidoc|md|rst)"
   repo=$(ghq list | fzf --layout=reverse --query="${LBUFFER}" \
     --preview="${preview_command}" --preview-window="${position}" \
     --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up)
